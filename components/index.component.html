@@ -1,12 +1,15 @@
 <div class="container-fluid">
     <div class="row full-height">
         <div id="editor" class="col-9">
-            <img>
+            <div id="editor-preview">
+                <img>
+            </div>
         </div>
         <div id="options" class="col-3">
             <div id="add-image">
                 <h3 class="text-center">Ajouter une image</h3>
                 <i id="open-file-icon" class="material-icons">insert_drive_file</i>
+                <input type="file" name="file-input" id="file-input" accept="image/*" hidden>
             </div>
             <div id="dimensions">
                 <h3 class="text-center">Dimensions</h3>
@@ -19,18 +22,18 @@
                     </div>
                     <div id="dimension-inputs" class="form-group form-inline">
                         <label for="width-input" class="mr-1 font-weight-bold">L</label>
-                        <input type="text" id="width-input">
+                        <input type="text" id="width-input" readonly>
                         <label for="height-input" class="ml-auto mr-1 font-weight-bold">H</label>
-                        <input type="text" id="height-input">
+                        <input type="text" id="height-input" readonly>
                     </div>
                 </form>
             </div>
             <div id="angles">
                 <h3 class="text-center">Angles</h3>
                 <div id="angle-buttons">
-                    <div class="angle-button"><i class="material-icons-sharp">crop_square</i><p>Droits</p></div>
-                    <div class="angle-button"><i class="material-icons">crop_square</i><p>Arrondis</p></div>
-                    <div class="angle-button"><i class="material-icons">panorama_fish_eye</i><p>Ronds</p></div>
+                    <div class="angle-button" id="square-button"><i class="material-icons-sharp">crop_square</i><p>Droits</p></div>
+                    <div class="angle-button" id="squarent-button"><i class="material-icons">crop_square</i><p>Arrondis</p></div>
+                    <div class="angle-button" id="round-button"><i class="material-icons">panorama_fish_eye</i><p>Ronds</p></div>
                 </div>
             </div>
             <div id="background" class="mb-3">
@@ -41,8 +44,12 @@
                 </form>
             </div>
             <div id="validate" class="mt-auto mb-3">
-                <button class="btn btn-primary">Valider</button>
+                <button id="validate-button" class="btn btn-primary">Valider</button>
             </div>
         </div>
+    </div>
+</div>
+<div id="loader" hidden>
+    <div class="spinner-grow" style="width: 3rem; height: 3rem;" role="status">
     </div>
 </div>

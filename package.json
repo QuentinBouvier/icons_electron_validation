@@ -20,6 +20,6 @@
     "electron": "^6.0.10"
   },
   "dependencies": {
-    "gm": "^1.23.1"
+    "html2canvas": "^1.0.0-rc.4"
   }
 }
