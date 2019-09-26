@@ -3,19 +3,9 @@
 const fs = require('fs');
 
 window.addEventListener('DOMContentLoaded', () => {
-  const replaceText = (selector, text) => {
-    const element = document.getElementById(selector)
-    if (element) element.innerText = text
-  }
+    displayComponent('index', () => {
 
-  displayComponent('index', () => {
-      document.getElementById('component').innerHTML += loadTemplate('versions', {});
-
-      for (const type of ['chrome', 'node', 'electron']) {
-        replaceText(`${type}-version`, process.versions[type])
-      }
-  })
-
+    })
 })
 
 function displayComponent(componentName, callback) {

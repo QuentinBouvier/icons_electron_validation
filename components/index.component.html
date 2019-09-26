@@ -1,1 +1,48 @@
-<h1>Hello, World ! <i class="material-icons">tag_faces</i></h1>
+<div class="container-fluid">
+    <div class="row full-height">
+        <div id="editor" class="col-9">
+            <img>
+        </div>
+        <div id="options" class="col-3">
+            <div id="add-image">
+                <h3 class="text-center">Ajouter une image</h3>
+                <i id="open-file-icon" class="material-icons">insert_drive_file</i>
+            </div>
+            <div id="dimensions">
+                <h3 class="text-center">Dimensions</h3>
+                <form onsubmit="return false;">
+                    <div class="form-group">
+                        <div id="range-labels">
+                            <span>18</span><span>1024</span>
+                        </div>
+                        <input type="range" class="form-control-range" id="dimension-range-input" min="18" max="1024">
+                    </div>
+                    <div id="dimension-inputs" class="form-group form-inline">
+                        <label for="width-input" class="mr-1 font-weight-bold">L</label>
+                        <input type="text" id="width-input">
+                        <label for="height-input" class="ml-auto mr-1 font-weight-bold">H</label>
+                        <input type="text" id="height-input">
+                    </div>
+                </form>
+            </div>
+            <div id="angles">
+                <h3 class="text-center">Angles</h3>
+                <div id="angle-buttons">
+                    <div class="angle-button"><i class="material-icons-sharp">crop_square</i><p>Droits</p></div>
+                    <div class="angle-button"><i class="material-icons">crop_square</i><p>Arrondis</p></div>
+                    <div class="angle-button"><i class="material-icons">panorama_fish_eye</i><p>Ronds</p></div>
+                </div>
+            </div>
+            <div id="background" class="mb-3">
+                <h3 class="text-center">Fond</h3>
+                <form onsubmit="return false;" class="form-inline">
+                    <label for="color-picker"><i class="material-icons">colorize</i></label>
+                    <input id="color-picker" type="color" class="form-control">
+                </form>
+            </div>
+            <div id="validate" class="mt-auto mb-3">
+                <button class="btn btn-primary">Valider</button>
+            </div>
+        </div>
+    </div>
+</div>

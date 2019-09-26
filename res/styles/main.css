@@ -1,0 +1,83 @@
+body {
+    overflow: hidden;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+#editor {
+    background-color: #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#editor img {
+    min-width: 320px;
+    min-height: 240px;
+    background: var(--primary);
+}
+
+#options {
+    background-color: #fafafa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+}
+
+#options div {
+    margin-top: 20px
+}
+
+#add-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#open-file-icon {
+    color: var(--primary);
+    font-size: 74px;
+    cursor: pointer;
+}
+
+#range-labels {
+    display:flex;
+    justify-content: space-between;
+}
+
+#dimensions #dimension-inputs input{
+    width: 50px;
+}
+
+#angles {
+    width: 100%;
+}
+
+#angle-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+#angles .angle-button i {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 45px;
+    border: 2px solid #fff0;
+}
+
+#angles .angle-button:hover {
+    cursor: pointer;
+}
+
+#angles .angle-button:hover i {
+    border: 2px solid lightgrey;
+}
+
+#background form input[type=color] {
+    width: 80px;
+    cursor: pointer;
+}
