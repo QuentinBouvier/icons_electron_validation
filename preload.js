@@ -20,10 +20,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const colorPicker = document.getElementById('color-picker');
         const validateButton = document.getElementById('validate-button');
         const editorPreview = document.getElementById('editor-preview');
-        const transform = {};
         let angles = 'square';
-        let image;
-        let lastRange;
 
         loadFileButton.onclick = openFileDialog;
         fileInputButton.onchange = loadImage;
@@ -58,8 +55,6 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
 
                     img.style.background = '#fff0';
-                    lastRange = ratio > 1 ? img.width : img.height;
-                    sizeRangeInput.value = lastRange;
                     widthInput.value = img.width;
                     heightInput.value = img.height;
                     editorPreview.style.width = (ratio > 1 ? img.height : img.width) + 'px';
@@ -90,8 +85,6 @@ window.addEventListener('DOMContentLoaded', () => {
                 editorPreview.style.height = (ratio > 1 ? heightInput.value : widthInput.value) + 'px';
 
                 setAngles();
-
-                transform['dimension'] = { width: widthInput.value, height: heightInput.value };
             }
         }
 
@@ -103,17 +96,14 @@ window.addEventListener('DOMContentLoaded', () => {
                     case 'square':
                     default:
                         editorPreview.style.borderRadius = '';
-                        if (transform['angles']) delete transform['angles'];
                         break;
                     case 'squarent':
                         radius = ratio > 1 ? preview.width * 0.10 : preview.height * 0.10;
                         editorPreview.style.borderRadius = radius + 'px';
-                        transform['angles'] = 'squarent';
                         break;
                     case 'round':
                         radius = ratio > 1 ? preview.height : preview.width;
                         editorPreview.style.borderRadius = '50%';
-                        transform['angles'] = 'round';
                         break;
                 }
             }
@@ -158,23 +148,4 @@ function displayComponent(componentName, callback) {
             body.innerHTML = err;
         }
     });
-}
-
-function loadTemplate(templateName, values) {
-    template = fs.readFileSync(`./components/templates/${templateName}.tpl.html`, 'utf8');
-
-    for (let v in values) {
-        let replaceTag = new RegExp(`{{${v}}}`, 'g');
-        template = template.replace(replaceTag, values[v]);
-    }
-
-    return template;
-}
-
-function hide(element) {
-    element.toggleAttribute('hidden', true);
-}
-
-function reveal(element) {
-    element.toggleAttribute('hidden', false);
 }
