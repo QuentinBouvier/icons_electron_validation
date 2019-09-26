@@ -7,10 +7,10 @@ const html2canvas = require('html2canvas');
 
 window.addEventListener('DOMContentLoaded', () => {
     displayComponent('index', () => {
-        const loader = document.getElementById('loader');
         const loadFileButton = document.getElementById('open-file-icon');
         const fileInputButton = document.getElementById('file-input');
         const preview = document.querySelector('#editor img');
+        const editorPreview = document.getElementById('editor-preview');
         const sizeRangeInput = document.getElementById('dimension-range-input');
         const widthInput = document.getElementById('width-input');
         const heightInput = document.getElementById('height-input');
@@ -19,7 +19,6 @@ window.addEventListener('DOMContentLoaded', () => {
         const roundButton = document.getElementById('round-button');
         const colorPicker = document.getElementById('color-picker');
         const validateButton = document.getElementById('validate-button');
-        const editorPreview = document.getElementById('editor-preview');
         let angles = 'square';
 
         loadFileButton.onclick = openFileDialog;
@@ -55,13 +54,13 @@ window.addEventListener('DOMContentLoaded', () => {
                     }
 
                     img.style.background = '#fff0';
-                    widthInput.value = img.width;
-                    heightInput.value = img.height;
-                    editorPreview.style.width = (ratio > 1 ? img.height : img.width) + 'px';
-                    editorPreview.style.height = (ratio > 1 ? img.height : img.width) + 'px';
+                    widthInput.value = ratio > 1 ? img.height : img.width;
+                    heightInput.value = ratio > 1 ? img.height : img.width;
+                    sizeRangeInput.value = widthInput.value;
+                    editorPreview.style.width = widthInput.value + 'px';
+                    editorPreview.style.height = heightInput.value + 'px';
                 };
                 preview.src = file.path;
-                image = gm(file);
                 angles = 'square';
                 setAngles();
             }
@@ -71,18 +70,22 @@ window.addEventListener('DOMContentLoaded', () => {
             if (preview.src) {
                 const ratio = preview.naturalWidth / preview.naturalHeight;
                 const value = e.target.value;
+                let width, height,widthAttr, heightAttr;
                 if (ratio > 1) {
-                    widthInput.value = value;
-                    heightInput.value = Math.floor(value / ratio);
+                    width = value;
+                    height = Math.floor(value / ratio);
                 } else {
-                    widthInput.value = Math.floor(value * ratio);
-                    heightInput.value = value;
+                    width = Math.floor(value * ratio);
+                    height = value;
                 }
 
-                preview.style.width = widthInput.value + 'px';
-                preview.style.height = heightInput.value + 'px';
-                editorPreview.style.width = (ratio > 1 ? heightInput.value : widthInput.value) + 'px';
-                editorPreview.style.height = (ratio > 1 ? heightInput.value : widthInput.value) + 'px';
+                widthInput.value = ratio > 1 ? height : width;
+                heightInput.value = ratio > 1 ? height: width;
+
+                preview.style.width = preview.style.maxWidth = preview.style.minWidth = width + 'px';
+                preview.style.height = preview.style.maxHeight = preview.style.minHeight = height + 'px';
+                editorPreview.style.width = widthInput.value + 'px';
+                editorPreview.style.height = heightInput.value + 'px';
 
                 setAngles();
             }
